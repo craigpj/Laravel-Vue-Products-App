@@ -88,7 +88,7 @@
         <!-- back nav -->
         <div v-if="detail" class="card card-body mb-2">
             <div class="text-left">
-                <button @click="resetDetail" type="button" class="btn btn-primary">< Back to Product List</button>
+                <button @click="resetDetail" type="button" class="btn btn-primary">&lt; Back to Product List</button>
             </div>
         </div>
         
@@ -228,7 +228,6 @@ export default {
         {
             let cPrice = this.price;
             let upperLimit = Number(cPrice) + Number(5000000);
-            console.log(cPrice + ' to ' + upperLimit);
             if (cPrice == '50000000')
             { 
                 upperLimit = '100000000';

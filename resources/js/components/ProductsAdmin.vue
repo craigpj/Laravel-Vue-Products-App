@@ -107,7 +107,7 @@
         <div v-if="getPageState('detail') || getPageState('update') || getPageState('create')" class="card card-body mb-2">
             <div class="row">
                 <div class="col text-left">
-                    <button @click="resetDetail" type="button" class="btn btn-primary">< Back to Product List</button>
+                    <button @click="resetDetail" type="button" class="btn btn-primary">&lt; Back to Product List</button>
                 </div>
                 <div v-if="getPageState('update') || getPageState('detail')" class="col text-right">
                     <button @click="setCreatePageState()" type="button" class="btn btn-success">+ Create New Product</button>
@@ -145,6 +145,8 @@
                 <li class="list-group-item">Price: ${{ Number(product.price / 100).toLocaleString() }}</li>
                 <li class="list-group-item">Created by: <strong>{{ product.user }}</strong></li>
                 <li class="list-group-item">Status: <strong>{{ product.status }}</strong></li>
+                <li class="list-group-item"><button @click="setProductStatus('7')" type="button" class="btn btn-danger">Delete</button></li>
+                <li class="list-group-item"><button @click="setProductStatus('2')" type="button" class="btn btn-success">Publish</button></li>
                 <li class="list-group-item"><button @click="setProductIdEdit(product)" type="button" class="btn btn-primary">Edit Product</button></li>
             </ul>
         </div>
@@ -179,7 +181,7 @@
         <!-- EDIT CREATE Product Form -->
         <div v-if="getPageState('create') || getPageState('update')" class="card card-body mb-2">
             <h3 v-if="getPageState('create')">Create Product</h3>
-            <h3 v-if="getPageState('update')">Update Product</h3>
+            <h3 v-if="getPageState('update')">Edit Product</h3>
             <form>
                 <div class="form-group">
                     <label for="formGroupProductName">Product Name</label>
@@ -213,6 +215,8 @@
                     </div>
                 </div>
                 <div class="text-right">
+                    <button @click="setProductStatus('7')" type="button" class="btn btn-danger">Delete</button>
+                    <button @click="setProductStatus('2')" type="button" class="btn btn-alert">Publish</button>
                     <button @click="resetDetail()" class="btn btn-secondary" type="button">Cancel</button>
                     <button @click="saveProduct()" class="btn btn-success" type="button">Save Product</button>
                 </div>
@@ -336,7 +340,26 @@ export default {
           .catch(err => console.log(err));
       }
     },
-    
+
+    // Update a products Status
+    setProductStatus (setStatus) {
+        this.product.status_id = setStatus;
+        fetch('../api/productupdate', {
+          method: 'post',
+          body: JSON.stringify(this.product),
+          headers: {
+            'content-type': 'application/json'
+          }
+        })
+          .then(res => res.json())
+          .then(data => {
+            alert('Product Updated');
+            this.fetchProducts();
+            this.resetDetail();
+          })
+          .catch(err => console.log(err));
+    },
+
     // Filter the products collection by number of bedrooms
     filterProductsByBeds: function(products){
         if (this.beds != '0')
@@ -363,7 +386,6 @@ export default {
         {
             let cPrice = this.price;
             let upperLimit = Number(cPrice) + Number(5000000);
-            console.log(cPrice + ' to ' + upperLimit);
             if (cPrice == '50000000')
             { 
                 upperLimit = '100000000';
