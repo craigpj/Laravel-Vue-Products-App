@@ -14,9 +14,9 @@
 
     </head>
     <body class="antialiased">
-        <div class="container">
+        <div class="container text-right">
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="hidden fixed top-0 px-6 py-4 sm:block">
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
                     @else
@@ -29,6 +29,7 @@
                 </div>
             @endif
         </div>
+    
         <div id="app">
             <div class="container">
                 <products></products>
@@ -40,5 +41,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
         
         <script src="{{ asset('js/app.js') }}"></script>
+
     </body>
 </html>

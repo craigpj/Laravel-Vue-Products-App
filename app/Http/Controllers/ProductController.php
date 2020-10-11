@@ -64,7 +64,7 @@ class ProductController extends Controller
     public function productsAll()
     {
         // Get all Products
-        $products = Product::all();
+        $products = Product::orderBy('created_at', 'desc')->get();
 
         // Loop through the collection and get the status, user and images collection
         foreach ($products as $product)
@@ -100,13 +100,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         // Get existing product or create a new product
-        $product = $request->isMethod('put') ? Product::findOrFail($request->product_id) : new Product;
+        $product = new Product;
 
         /**
          * set incomming put values to the product
          * This will add or overwrite existing values
          * */
-        $product->id = $request->input('product_id');
+        $product->id = $request->input('id');
         $product->name = $request->input('name');
         $product->price = $request->input('price');
         $product->description = $request->input('description');
@@ -114,7 +114,7 @@ class ProductController extends Controller
         $product->bathrooms = $request->input('bathrooms');
         $product->status_id = $request->input('status_id');
         // need to add Auth user_id when admin is created
-        $product->user_id = 1;//$request->input('user_id');
+        $product->user_id = $request->input('user_id');
 
         if ($product->save())
         {
@@ -125,10 +125,38 @@ class ProductController extends Controller
         }
     }
 
-    public function test(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
     {
-        //return $request->input('name');
-        return $request->name;
+        // Get existing product or create a new product
+        $product = Product::findOrFail($request->input('id'));
+
+        /**
+         * set incomming put values to the product
+         * This will add or overwrite existing values
+         * */
+        $product->id = $request->input('id');
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->description = $request->input('description');
+        $product->bedrooms = $request->input('bedrooms');
+        $product->bathrooms = $request->input('bathrooms');
+        $product->status_id = $request->input('status_id');
+        // need to add Auth user_id when admin is created
+        $product->user_id = $request->input('user_id');
+
+        if ($product->save())
+        {
+            // get product details
+            $this->getProductDetails($product);
+            
+            return new ProductResource($product);
+        }
     }
 
     /**
