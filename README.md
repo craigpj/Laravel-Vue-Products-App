@@ -10,16 +10,16 @@ This project uses:
 
 The application consists of a two Vue.js applications that communicate with the Laravel 8 application via a REST API.
 
-### The most important files:
+## The most important files:
 
-## Front End (Vue.js)
+### Front End (Vue.js)
 
-- Private ProductsAdmin component [ProdctsAdmin.vue](https://github.com/craigpj/Laravel-Vue-Products-App/blob/main/resources/js/components/ProductsAdmin.vue).
+- Private ProductsAdmin component [ProductsAdmin.vue](https://github.com/craigpj/Laravel-Vue-Products-App/blob/main/resources/js/components/ProductsAdmin.vue).
 - Admin appAdmin.js [app.js](https://github.com/craigpj/Laravel-Vue-Products-App/blob/main/resources/js/appAdmin.js).
 - Public Products component [Prodcts.vue](https://github.com/craigpj/Laravel-Vue-Products-App/blob/main/resources/js/components/Products.vue).
 - Public app.js [app.js](https://github.com/craigpj/Laravel-Vue-Products-App/blob/main/resources/js/app.js).
 
-## Backend (PHP)
+### Backend (PHP)
 
 - API routes: [api.php](https://github.com/craigpj/Laravel-Vue-Products-App/blob/main/routes/api.php).
 - Main API response controller: [ProductController.php](https://github.com/craigpj/Laravel-Vue-Products-App/blob/main/app/Http/Controllers/ProductController.php).
@@ -30,6 +30,7 @@ The application consists of a two Vue.js applications that communicate with the 
 - Database Seeder [DatabaseSeeder.php](https://github.com/craigpj/Laravel-Vue-Products-App/blob/main/database/seeders/DatabaseSeeder.php).
 - Other create table migration files: [migrations](https://github.com/craigpj/Laravel-Vue-Products-App/tree/main/database/migrations).
 
+### Tables
 This application consists of 4 custom tables and 3 Laravel generated tables:
 Custom:
 - products
