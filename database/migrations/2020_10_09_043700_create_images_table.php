@@ -20,6 +20,7 @@ class CreateImagesTable extends Migration
             $table->bigInteger('user_id')->comment('FK from users table');
             $table->integer('status_id')->comment('FK from statuses table');
             $table->timestamps();
+            $table->index('product_id');
         });
     }
 
