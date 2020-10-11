@@ -2060,6 +2060,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Products',
   data: function data() {
@@ -38527,6 +38529,14 @@ var render = function() {
                     },
                     [
                       _c("option", { attrs: { value: "0" } }, [_vm._v("All")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "10000000" } }, [
+                        _vm._v("$100,000 to $150,000")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "15000000" } }, [
+                        _vm._v("$150,000 to $200,000")
+                      ]),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "20000000" } }, [
                         _vm._v("$200,000 to $250,000")

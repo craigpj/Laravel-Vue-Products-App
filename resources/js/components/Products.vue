@@ -34,6 +34,8 @@
                         <label for="priceFormControl">Price</label>
                         <select v-model="price" class="form-control" id="priceFormControl">
                             <option value="0">All</option>
+                            <option value="10000000">$100,000 to $150,000</option>
+                            <option value="15000000">$150,000 to $200,000</option>
                             <option value="20000000">$200,000 to $250,000</option>
                             <option value="25000000">$250,000 to $300,000</option>
                             <option value="30000000">$300,000 to $350,000</option>
