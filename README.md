@@ -8,7 +8,7 @@ This project uses:
 - Bootstrap
 - MySQL
 
-The application consists of a two Vue.js applications that communicate with the Laravel 8 application via a REST API.
+The application consists of two Vue.js applications that communicate with the Laravel 8 application via a REST API.
 
 ## The most important files:
 
