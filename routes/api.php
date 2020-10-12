@@ -47,8 +47,3 @@ Route::get('statuses', [StatusController::class, 'index']);
 
 // list Images
 Route::get('images', [ImageController::class, 'index']);
-
-// test delete me
-Route::post('test', [ProductController::class, 'test']);
-// test delete me
-Route::put('test', [ProductController::class, 'test']);

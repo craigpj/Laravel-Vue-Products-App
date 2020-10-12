@@ -107,10 +107,10 @@
         <div v-if="getPageState('detail') || getPageState('update') || getPageState('create')" class="card card-body mb-2">
             <div class="row">
                 <div class="col text-left">
-                    <button @click="resetDetail" type="button" class="btn btn-primary">&lt; Back to Product List</button>
+                    <button @click="resetDetail()" type="button" class="btn btn-primary">&lt; Back to Product List</button>
                 </div>
                 <div v-if="getPageState('update') || getPageState('detail')" class="col text-right">
-                    <button @click="setCreatePageState()" type="button" class="btn btn-success">+ Create New Product</button>
+                    <button @click="setCreate()" type="button" class="btn btn-success">+ Create New Product</button>
                 </div>
             </div>
         </div>
@@ -147,7 +147,7 @@
                 <li class="list-group-item">Status: <strong>{{ product.status }}</strong></li>
                 <li class="list-group-item"><button @click="setProductStatus('7')" type="button" class="btn btn-danger">Delete</button></li>
                 <li class="list-group-item"><button @click="setProductStatus('2')" type="button" class="btn btn-success">Publish</button></li>
-                <li class="list-group-item"><button @click="setProductIdEdit(product)" type="button" class="btn btn-primary">Edit Product</button></li>
+                <li class="list-group-item"><button @click="setProductIdEdit(product)" type="button" class="btn btn-primary">Edit</button></li>
             </ul>
         </div>
         
@@ -216,7 +216,7 @@
                 </div>
                 <div class="text-right">
                     <button @click="setProductStatus('7')" type="button" class="btn btn-danger">Delete</button>
-                    <button @click="setProductStatus('2')" type="button" class="btn btn-alert">Publish</button>
+                    <button @click="setProductStatus('2')" type="button" class="btn btn-warning">Publish</button>
                     <button @click="resetDetail()" class="btn btn-secondary" type="button">Cancel</button>
                     <button @click="saveProduct()" class="btn btn-success" type="button">Save Product</button>
                 </div>
@@ -269,13 +269,13 @@ export default {
 
     // determine the page state
     detail() {
-        if (this.product_id == 0)
+        if (this.product_id)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
   },
@@ -305,6 +305,7 @@ export default {
         .catch(err => console.log(err));
     },
     
+    // Call the products API to create or update a product
     saveProduct() {
       if (this.pageState == 'create') {
         // Create New
@@ -318,7 +319,6 @@ export default {
           .then(res => res.json())
           .then(data => {
             alert('Product Created');
-            this.fetchProducts();
             this.resetDetail();
           })
           .catch(err => console.log(err));
@@ -334,7 +334,6 @@ export default {
           .then(res => res.json())
           .then(data => {
             alert('Product Updated');
-            this.fetchProducts();
             this.resetDetail();
           })
           .catch(err => console.log(err));
@@ -354,7 +353,6 @@ export default {
           .then(res => res.json())
           .then(data => {
             alert('Product Updated');
-            this.fetchProducts();
             this.resetDetail();
           })
           .catch(err => console.log(err));
@@ -451,11 +449,14 @@ export default {
         this.beds = '0';
         this.bath = '0';
         this.price = '0';
+        this.fetchProducts();
     },
 
     setCreate: function(){
-        this.product = this.product;
-        this.product.user_id = 1;
+        //this.product = this.product;
+        this.product.user_id = '1';
+        this.product.name = '';
+        this.product.description = '';
         this.product_id = '0';
         this.pageState = 'create';
         this.status = '0';

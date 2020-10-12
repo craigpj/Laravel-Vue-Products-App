@@ -32,7 +32,8 @@ The application consists of a two Vue.js applications that communicate with the 
 
 ### Tables
 This application consists of 4 custom tables and 3 Laravel generated tables:
-Custom:
+
+Custom
 - products
 - images
 - statuses
