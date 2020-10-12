@@ -169,7 +169,7 @@
                 </div>
                 <div class="form-group">
                     <label for="formGroupEmailPhone">Your Phone Number</label>
-                    <input type="text" class="form-control" id="formGroupEmailPhone" placeholder="Example: John Doe">
+                    <input type="text" class="form-control" id="formGroupEmailPhone" placeholder="0412 686 956">
                 </div>
                 <div class="text-right">
                     <button @click="resetDetail()" type="button" class="btn btn-secondary">Cancel</button>
